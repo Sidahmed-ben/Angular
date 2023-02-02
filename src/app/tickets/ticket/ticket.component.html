@@ -9,13 +9,19 @@
   </i>
 
   <ng-template #SI>
-    <i [style.padding]="'10px'" class="fa fa-user">{{ ticket.major }}</i>
+    <i [style.padding]="'10px'" class="fa fa-user"></i>{{ ticket.major }}
   </ng-template>
 
   <ng-template #GE>
-    <i [style.padding]="'10px'" class="fa fa-id-card" aria-hidden="true">{{
-      ticket.major
-    }}</i>
+    <i [style.padding]="'10px'" class="fa fa-id-card" aria-hidden="true"></i
+    >{{ ticket.major }}
   </ng-template>
-  <!-- <i class="far fa-user" #GE>{{ ticket.major }}</i> -->
+
+  <button
+    [style.margin-left]="'200px'"
+    class="btn-custom"
+    (click)="deleteTicket(ticket)"
+  >
+    Supprimer
+  </button>
 </div>
