@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Ticket } from '../../models/ticket';
-import { TICKETS_MOCKED } from '../../mocks/tickets.mock';
-import { BehaviorSubject } from 'rxjs/index';
+import { Injectable } from "@angular/core";
+import { Ticket } from "../../models/ticket";
+import { TICKETS_MOCKED } from "../../mocks/tickets.mock";
+import { BehaviorSubject } from "rxjs/index";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TicketService {
   /**
@@ -18,10 +18,11 @@ export class TicketService {
    * Observable which contains the list of the tickets.
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
-  public tickets$: BehaviorSubject<Ticket[]> = new BehaviorSubject(this.ticketList);
+  public tickets$: BehaviorSubject<Ticket[]> = new BehaviorSubject(
+    this.ticketList
+  );
 
-  constructor() {
-  }
+  constructor() {}
 
   addTicket(ticket: Ticket) {
     // You need here to update the list of ticket and then update our observable (Subject) with the new list

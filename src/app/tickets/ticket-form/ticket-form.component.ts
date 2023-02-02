@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { TicketService } from '../../../services/ticket/ticket.service';
-import { Ticket } from '../../../models/ticket';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { TicketService } from "../../../services/ticket/ticket.service";
+import { Ticket } from "../../../models/ticket";
 
 @Component({
-  selector: 'app-ticket-form',
-  templateUrl: './ticket-form.component.html',
-  styleUrls: ['./ticket-form.component.scss']
+  selector: "app-ticket-form",
+  templateUrl: "./ticket-form.component.html",
+  styleUrls: ["./ticket-form.component.scss"],
 })
 export class TicketFormComponent implements OnInit {
-
   // Note: We are using here ReactiveForms to create our form. Be careful when you look for some documentation to
   // avoid TemplateDrivenForm (another type of form)
   /**
@@ -18,25 +17,27 @@ export class TicketFormComponent implements OnInit {
    */
   public ticketForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public ticketService: TicketService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public ticketService: TicketService
+  ) {
     // Form creation
     this.ticketForm = this.formBuilder.group({
-      title: [''],
-      description: ['']
+      title: [""],
+      description: [""],
+      major: [""],
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!
     // More information: https://angular.io/guide/reactive-forms#simple-form-validation
     // Advanced validation: https://angular.io/guide/form-validation#reactive-form-validation
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addTicket() {
     const ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
     ticketToCreate.date = new Date();
-    ticketToCreate.author = 'Me';
+    ticketToCreate.student = "Me";
     this.ticketService.addTicket(ticketToCreate);
   }
-
 }
