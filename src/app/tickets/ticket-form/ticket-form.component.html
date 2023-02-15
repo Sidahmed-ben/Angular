@@ -32,12 +32,11 @@
   <br />
   <label for="major">
     Major <br />
-    <input
-      class="input-custom"
-      type="text"
-      id="major"
-      [formControlName]="'major'"
-    />
+    <select [formControlName]="'major'">
+      <option *ngFor="let m of majors" [label]="m" [value]="m">
+        {{ m }}
+      </option>
+    </select>
   </label>
   <br />
   <button type="submit" class="btn-custom" (click)="addTicket()">Create</button>

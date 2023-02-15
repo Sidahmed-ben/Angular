@@ -36,6 +36,7 @@ export class TicketService {
         t.major === ticket.major &&
         t.student === ticket.student
     );
-    this.tickets$.getValue().splice(index, 1);
+
+    this.tickets$.getValue()[index].archived = true;
   }
 }

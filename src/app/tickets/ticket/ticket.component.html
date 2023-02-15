@@ -18,10 +18,23 @@
   </ng-template>
 
   <button
-    [style.margin-left]="'200px'"
+    [style.margin-left]="'400px'"
+    [style.width]="'100px'"
     class="btn-custom"
     (click)="deleteTicket(ticket)"
   >
     Supprimer
   </button>
+
+  <div
+    [style.margin-left]="'400px'"
+    [style.width]="'80px'"
+    [style.background-color]="ticket.archived ? 'green' : 'yellow'"
+    [style.font-size]="'15px'"
+    [style.text-align]="'center'"
+    class="btn-custom"
+  >
+    <span *ngIf="ticket.archived"> Arch </span>
+    <span *ngIf="!ticket.archived"> Not Arch </span>
+  </div>
 </div>

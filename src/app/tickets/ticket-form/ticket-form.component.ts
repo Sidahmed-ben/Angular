@@ -3,6 +3,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { TicketService } from "../../../services/ticket/ticket.service";
 import { Ticket } from "../../../models/ticket";
 
+enum Major {
+  GE = "GE",
+  SI = "SI",
+}
+
 @Component({
   selector: "app-ticket-form",
   templateUrl: "./ticket-form.component.html",
@@ -16,6 +21,9 @@ export class TicketFormComponent implements OnInit {
    * More information about Reactive Forms: https://angular.io/guide/reactive-forms
    */
   public ticketForm: FormGroup;
+  public majors: string[] = Object.keys(Major).filter((item) => {
+    return isNaN(Number(item));
+  });
 
   constructor(
     public formBuilder: FormBuilder,
@@ -25,7 +33,7 @@ export class TicketFormComponent implements OnInit {
     this.ticketForm = this.formBuilder.group({
       title: [""],
       description: [""],
-      major: [""],
+      major: ["GI"],
       student: [""],
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!

@@ -9,6 +9,9 @@ import { Ticket } from "../../../models/ticket";
 })
 export class TicketListComponent implements OnInit {
   public ticketList: Ticket[] = [];
+
+  public displayTicketArchived: boolean = false;
+
   constructor(public ticketService: TicketService) {
     this.ticketService.tickets$.subscribe(
       (tickets) => (this.ticketList = tickets)
@@ -24,5 +27,9 @@ export class TicketListComponent implements OnInit {
   ticketHasBeenDeleted(ticket: Ticket) {
     console.log("Ticket has been deleted", ticket);
     this.ticketService.deleteTicket(ticket);
+  }
+
+  toggleDisplayArchived() {
+    this.displayTicketArchived = !this.displayTicketArchived;
   }
 }
