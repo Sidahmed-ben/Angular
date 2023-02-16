@@ -21,13 +21,12 @@
   </label>
   <br />
   <label for="major">
-    Student <br />
-    <input
-      class="input-custom"
-      type="text"
-      id="student"
-      [formControlName]="'student'"
-    />
+    StudentId <br />
+    <select [formControlName]="'major'">
+      <option *ngFor="let m of majors" [label]="m" [value]="m">
+        {{ m }}
+      </option>
+    </select>
   </label>
   <br />
   <label for="major">

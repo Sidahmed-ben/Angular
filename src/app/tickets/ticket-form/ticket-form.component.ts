@@ -25,6 +25,10 @@ export class TicketFormComponent implements OnInit {
     return isNaN(Number(item));
   });
 
+  // public students: Student[] = Object.keys(Major).filter((item) => {
+  //   return isNaN(Number(item));
+  // });
+
   constructor(
     public formBuilder: FormBuilder,
     public ticketService: TicketService
