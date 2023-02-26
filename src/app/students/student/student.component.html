@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="mt-5 col-md-3">
+      <app-student-form
+        (eventTosendToStudent)="taskToDoByStudent($event)"
+      ></app-student-form>
+    </div>
+    <div class="mt-5 col-md-9">
+      <app-student-list [clickSubject]="clickSubject"></app-student-list>
+    </div>
+  </div>
+</div>

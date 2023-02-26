@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { TicketService } from "../../../services/ticket/ticket.service";
 import { Ticket } from "../../../models/ticket";
+// import { STUDENTS_MOCKED } from "src/mocks/students.mock";
+import { Student } from "src/models/student";
+import { StudentService } from "src/services/student/student.service";
 
 enum Major {
   GE = "GE",
@@ -25,27 +28,31 @@ export class TicketFormComponent implements OnInit {
     return isNaN(Number(item));
   });
 
-  // public students: Student[] = Object.keys(Major).filter((item) => {
-  //   return isNaN(Number(item));
-  // });
+  public students: Student[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
-    public ticketService: TicketService
+    public ticketService: TicketService,
+    public studentService: StudentService
   ) {
     // Form creation
     this.ticketForm = this.formBuilder.group({
       title: [""],
       description: [""],
       major: ["GI"],
-      student: [""],
+      student: [0],
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!
     // More information: https://angular.io/guide/reactive-forms#simple-form-validation
     // Advanced validation: https://angular.io/guide/form-validation#reactive-form-validation
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.studentService.getStudents().subscribe({
+      next: (students) => (this.students = students),
+      error: (err) => console.log(err),
+    });
+  }
 
   // Rajouter un nouveau ticket
   addTicket() {
@@ -54,7 +61,8 @@ export class TicketFormComponent implements OnInit {
     ticketToCreate.title = this.ticketForm.get(["title"]).value;
     ticketToCreate.description = this.ticketForm.get(["description"]).value;
     ticketToCreate.major = this.ticketForm.get(["major"]).value;
-    ticketToCreate.student = this.ticketForm.get(["student"]).value;
+    const studentId = this.ticketForm.get(["student"]).value;
+    ticketToCreate.student = this.students[studentId - 1];
     this.ticketService.addTicket(ticketToCreate);
   }
 }

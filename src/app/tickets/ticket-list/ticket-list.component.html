@@ -1,18 +1,28 @@
-<div class="ticket-list">
-  <button (click)="toggleDisplayArchived()">
-    <p *ngIf="displayTicketArchived">Hide archived tickets</p>
-    <p *ngIf="!displayTicketArchived">Display archived tickets</p>
-  </button>
-  <div class="ticket" *ngFor="let ticket of ticketList">
-    <!--Inputs & Output allow communication between parent & child components.-->
-    <!--More information: https://angular.io/guide/component-interaction-->
-    <app-ticket
-      *ngIf="
-        displayTicketArchived || !(displayTicketArchived || ticket.archived)
-      "
-      [ticket]="ticket"
-      (ticketHasBeenSelected)="ticketHasBeenSelected($event)"
-      (ticketHasBeenDeleted)="ticketHasBeenDeleted($event)"
-    ></app-ticket>
+<div class="container">
+  <div class="row">
+    <div class="mt-5 col-md-3">
+      <app-ticket-form></app-ticket-form>
+    </div>
+    <div class="mt-5 col-md-9">
+      <div class="ticket-list">
+        <button (click)="toggleDisplayArchived()">
+          <p *ngIf="displayTicketArchived">Hide archived tickets</p>
+          <p *ngIf="!displayTicketArchived">Display archived tickets</p>
+        </button>
+        <div class="ticket" *ngFor="let ticket of ticketList">
+          <!--Inputs & Output allow communication between parent & child components.-->
+          <!--More information: https://angular.io/guide/component-interaction-->
+          <app-ticket
+            *ngIf="
+              displayTicketArchived ||
+              !(displayTicketArchived || ticket.archived)
+            "
+            [ticket]="ticket"
+            (ticketHasBeenSelected)="ticketHasBeenSelected($event)"
+            (ticketHasBeenDeleted)="ticketHasBeenDeleted($event)"
+          ></app-ticket>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

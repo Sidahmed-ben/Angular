@@ -1,0 +1,34 @@
+<table class="table table-striped table-hover" style="width: 900px">
+  <thead>
+    <tr>
+      <th scope="col">StudentId</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentList">
+      <th scope="row">{{ student.id }}</th>
+      <td>{{ student.FirstName }}</td>
+      <td>{{ student.LastName }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="SuppStud(student.id)"
+        >
+          Supprimer
+        </button>
+        <button
+          style="margin-left: 20px"
+          type="button"
+          class="btn btn-info"
+          (click)="goToDetails(student.id)"
+        >
+          Notes
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

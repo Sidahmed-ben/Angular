@@ -13,9 +13,10 @@ export class TicketListComponent implements OnInit {
   public displayTicketArchived: boolean = false;
 
   constructor(public ticketService: TicketService) {
-    this.ticketService.tickets$.subscribe(
-      (tickets) => (this.ticketList = tickets)
-    );
+    this.ticketService.tickets$.subscribe({
+      next: (tickets) => (this.ticketList = tickets),
+      error: (err) => console.log(err),
+    });
   }
 
   ngOnInit() {}
